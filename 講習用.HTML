@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>スキルシート更新のお願い（5月対応分）</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --surface: rgba(255, 255, 255, 0.08);
+        --surface-2: rgba(255, 255, 255, 0.12);
+        --border: rgba(255, 255, 255, 0.14);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.72);
+        --muted-2: rgba(255, 255, 255, 0.62);
+        --shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+        --accent: #7c5cff;
+        --accent-2: #38bdf8;
+        --danger: #fb7185;
+        --ok: #34d399;
+        --radius: 16px;
+        --radius-sm: 12px;
+        --max: 980px;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+        --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP",
+          "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", Arial, sans-serif;
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f6f7fb;
+          --surface: #ffffff;
+          --surface-2: #f2f4ff;
+          --border: rgba(17, 24, 39, 0.12);
+          --text: rgba(17, 24, 39, 0.92);
+          --muted: rgba(17, 24, 39, 0.72);
+          --muted-2: rgba(17, 24, 39, 0.62);
+          --shadow: 0 14px 36px rgba(2, 6, 23, 0.12);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        color: var(--text);
+        background: radial-gradient(1200px 600px at 20% -10%, rgba(124, 92, 255, 0.35), transparent 55%),
+          radial-gradient(900px 500px at 90% 0%, rgba(56, 189, 248, 0.28), transparent 55%),
+          linear-gradient(180deg, var(--bg), color-mix(in oklab, var(--bg) 92%, black));
+      }
+
+      a {
+        color: inherit;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 8px;
+        padding: 10px 12px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        text-decoration: none;
+        z-index: 10;
+      }
+      .skip-link:focus {
+        left: 12px;
+      }
+
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 28px 16px 56px;
+      }
+
+      header {
+        margin: 8px 0 22px;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: color-mix(in oklab, var(--surface) 85%, transparent);
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      h1 {
+        margin: 12px 0 8px;
+        font-size: clamp(22px, 3.4vw, 34px);
+        line-height: 1.22;
+        letter-spacing: 0.02em;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .card {
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--surface) 92%, transparent);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .card-inner {
+        padding: 18px 18px;
+      }
+
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 18px;
+        letter-spacing: 0.01em;
+      }
+
+      .card p {
+        margin: 0 0 10px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .card p:last-child {
+        margin-bottom: 0;
+      }
+
+      ul {
+        margin: 10px 0 0;
+        padding-left: 18px;
+        color: var(--muted);
+        line-height: 1.85;
+      }
+
+      li + li {
+        margin-top: 6px;
+      }
+
+      .callouts {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      @media (min-width: 860px) {
+        .callouts {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .pill {
+        display: flex;
+        gap: 10px;
+        padding: 12px 12px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--surface-2) 80%, transparent);
+      }
+
+      .pill strong {
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .pill .meta {
+        color: var(--muted-2);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .mono {
+        font-family: var(--mono);
+        font-size: 13px;
+        word-break: break-word;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 3px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--surface) 88%, transparent);
+        color: var(--muted);
+      }
+
+      .tag.danger {
+        color: color-mix(in oklab, var(--danger) 90%, var(--text));
+        border-color: color-mix(in oklab, var(--danger) 45%, var(--border));
+        background: color-mix(in oklab, var(--danger) 18%, transparent);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--border));
+        background: linear-gradient(
+          135deg,
+          color-mix(in oklab, var(--accent) 56%, transparent),
+          color-mix(in oklab, var(--accent-2) 42%, transparent)
+        );
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 650;
+        letter-spacing: 0.01em;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+      }
+
+      .btn:hover {
+        text-decoration: none;
+        filter: brightness(1.05);
+      }
+
+      .btn:focus-visible,
+      a:focus-visible {
+        outline: 3px solid color-mix(in oklab, var(--accent) 65%, white);
+        outline-offset: 2px;
+        border-radius: 12px;
+      }
+
+      .btn small {
+        opacity: 0.92;
+        font-weight: 500;
+      }
+
+      footer {
+        margin-top: 16px;
+        color: var(--muted-2);
+        font-size: 13px;
+        line-height: 1.8;
+        text-align: center;
+      }
+
+      @media print {
+        :root {
+          --bg: white;
+          --surface: white;
+          --surface-2: white;
+          --border: #c7cbd6;
+          --text: #000000;
+          --muted: #111827;
+          --muted-2: #1f2937;
+        }
+        body {
+          background: white !important;
+          color: black !important;
+        }
+        .card {
+          box-shadow: none !important;
+          background: white !important;
+        }
+        .kicker,
+        .btn {
+          border-color: #c7cbd6 !important;
+          background: white !important;
+          color: black !important;
+          box-shadow: none !important;
+        }
+        .tag,
+        .pill {
+          background: white !important;
+          box-shadow: none !important;
+        }
+        a[href]::after {
+          content: " (" attr(href) ")";
+          font-weight: normal;
+          font-size: 11px;
+          color: #333;
+          word-break: break-all;
+        }
+        .skip-link {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+    <div class="wrap">
+      <header>
+        <div class="kicker" aria-label="宛先">
+          <span class="tag">EG各位</span>
+          <span>管理営業部より</span>
+        </div>
+        <h1>スキルシート更新頻度の変更およびご対応のお願い</h1>
+        <p class="subtitle">
+          お疲れ様です。管理営業部です。スキルシートに関する【お知らせ】と【ご依頼】です。<br />
+          これまで年1回（2月）としていた更新を、今後は年4回（5月・8月・11月・2月）へ変更します。今回は【5月対応分】です。
+        </p>
+      </header>
+
+      <main id="main" class="grid" aria-label="お知らせ本文">
+        <section class="card" aria-labelledby="sec-background">
+          <div class="card-inner">
+            <h2 id="sec-background">変更の背景</h2>
+            <p>
+              スキルシートの質向上のため、定期的な更新をお願いする運びとなりました。内容が最新でない場合、案件紹介や面談時の印象に影響する可能性があります。
+            </p>
+            <ul>
+              <li>EGごとのスキルシートの粒度・質にばらつきがある</li>
+              <li>長期稼働の現場では過去の内容を忘れてしまい、記載漏れが発生しやすい</li>
+              <li>内容が薄くなり案件紹介の数に差が出てしまう場合がある</li>
+              <li>経験をうまく伝えられず、面談での印象が悪くなってしまう場合がある</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="sec-action">
+          <div class="card-inner">
+            <h2 id="sec-action">対応内容（提出先・期限）</h2>
+            <p>スキルシートを最新に更新いただき、完了後にメールでご提出ください。</p>
+
+            <div class="callouts" role="list" aria-label="提出情報">
+              <div class="pill" role="listitem">
+                <div>
+                  <div><strong>提出先（To）</strong> <span class="meta">担当 管理営業（@jqit.co.jp ドメイン）</span></div>
+                  <div class="meta">※個別の担当者宛に送付</div>
+                </div>
+              </div>
+              <div class="pill" role="listitem">
+                <div>
+                  <div>
+                    <strong>期限</strong>
+                    <span class="tag danger" aria-label="期限">5月20日（水）まで</span>
+                  </div>
+                  <div class="meta">余裕をもって提出をお願いします</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pill" style="margin-top: 10px">
+              <div>
+                <div><strong>Cc</strong> <span class="meta">所属事業部リーダー宛のメーリス（下記）</span></div>
+                <ul class="mono" aria-label="Cc一覧">
+                  <li>開発事業部：div_dev_leader@jqit.co.jp</li>
+                  <li>インフラ事業部：div_infra_leader@jqit.co.jp</li>
+                  <li>QA事業部：div_qa_leader@jqit.co.jp</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="sec-format">
+          <div class="card-inner">
+            <h2 id="sec-format">新フォーマットへの移行</h2>
+            <p>
+              現在、スキルシートは新フォーマットへ移行しています。旧フォーマットで作成されている方は、このタイミングで移し替えもお願いします。
+            </p>
+            <p class="subtitle">各事業部ごとのテンプレートは、新フォーマットと同時に別途スレッドにて展開されます。</p>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="sec-ai">
+          <div class="card-inner">
+            <h2 id="sec-ai">AIサポート（作成支援）</h2>
+            <p>
+              記載内容の作成には、AIによる支援ツールの利用をお願いします。質問形式に回答することで、内容を自動生成できます。
+            </p>
+            <div style="margin-top: 12px">
+              <a
+                class="btn"
+                href="https://udify.app/chat/Thv9z0MUgpxlaozI"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="AIアプリを新しいタブで開く"
+              >
+                AIアプリを開く
+                <small>（別タブ）</small>
+              </a>
+            </div>
+
+            <div class="pill" style="margin-top: 12px">
+              <div>
+                <div><strong>使用方法</strong></div>
+                <ol style="margin: 8px 0 0; padding-left: 18px; color: var(--muted); line-height: 1.85">
+                  <li>URLにアクセスする</li>
+                  <li>事業部カテゴリーを選択する</li>
+                  <li>事業部ごとの質問に回答する（質問はまとめて投下されます）</li>
+                  <li>回答を送信する</li>
+                  <li>AIが内容を編集して返してくれる</li>
+                  <li>編集された内容をスキルシートの業務内容に転記する</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="pill" style="margin-top: 10px">
+              <div>
+                <div><strong>注意</strong></div>
+                <ul>
+                  <li>保有スキル（経験年数・資格など）、参画期間、担当フェーズなどは、それぞれ該当欄に更新・記載が必要です</li>
+                  <li>アクセス集中により処理が止まる可能性があります。その場合は時間をおいて再度実施してください</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer aria-label="補足">
+        ご不明な点がございましたら、お気軽に担当営業または菊地までご連絡ください。<br />
+        以上、よろしくお願いいたします。
+      </footer>
+    </div>
+  </body>
+</html>
